@@ -5,8 +5,8 @@ makeblock files upload tool
 ## The environment you need(所需要的环境)
 
 - python2 or python3
-- You need to install the pyserial library, it is best to install `python install pyserial` with pip.(你需要安装 pyserial 的库，最好是用 pip 安装 `python install pyserial`)
-- You need to install the progressbar2 library, it is best to install `pip install progressbar2` with pip.(你需要安装 progressbar2 的库，最好是用 pip 安装 `pip install progressbar2`)
+- You need to install the pyserial library, it is best to install with pip `pip install pyserial`.(你需要安装 pyserial 的库，最好是用 pip 安装 `python install pyserial`)
+- You need to install the progressbar2 library, it is best to install with pip `pip install progressbar2`.(你需要安装 progressbar2 的库，最好是用 pip 安装 `pip install progressbar2`)
 
 ## Steps for usage(使用步骤)
 
