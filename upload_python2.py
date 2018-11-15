@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*
-# python3
+# python2
 import os
 import time
 import threading
@@ -191,7 +191,10 @@ def send_file(ser, input_file_path, target_file_path):
     input_file_fd = open(input_file_path, 'rb')
     input_file_data = input_file_fd.read()
     input_file_len = len(input_file_data)
-    progress_bar.start(input_file_len)
+    try:
+        progress_bar.start(input_file_len)
+    except:
+	    progress_bar.start()
     # Send file header
     # 1(file_type) + 4(file_size) + 4(file_check_sum) = 0x09
     cmd_len_str = int2byte(0x09 + len(target_file_path), 2, 'little')
@@ -220,7 +223,7 @@ def send_file(ser, input_file_path, target_file_path):
             retransmission_count = retransmission_count + 1
             print("resend the file header[" + str(retransmission_count) + "]")
             ser.write(binascii.a2b_hex(send_head_str))
-            if retransmission_count >= 2:
+            if retransmission_count >= 5:
                 failed_to_exit = True
                 update_completed = False
                 print("Send header time out!")
@@ -261,7 +264,7 @@ def send_file(ser, input_file_path, target_file_path):
                 retransmission_count = retransmission_count + 1
                 print("resend the file block[" + str(retransmission_count) + "]")
                 ser.write(send_block_bytes)
-                if retransmission_count >= 2:
+                if retransmission_count >= 3:
                     failed_to_exit = True
                     update_completed = False
                     print("Send file block time out!")
